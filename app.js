@@ -6,6 +6,8 @@ import userRouter from "./routers/userRouter";
 import videoRouter from "./routers/videoRouter"; 
 import globalRouter from "./routers/globalRouter"; 
 import routes from "./routes";
+import { localsMiddleware } from "./middlewares";
+
 /* default로 export 하지 않았으면 { userRouter } */
 
 const app = express();
@@ -23,7 +25,9 @@ app.use(cookieParser());
 app.use(express.urlencoded({extended:true})); // 서버가 form에서 받은 데이터를 이해할 수 있도록 
 app.use(express.json()); // 서버가 json 형식의 데이터를 이해할 수 있도록
 app.use(morgan("dev"));
-app.use(helmet());
+//app.use(helmet());
+
+app.use(localsMiddleware);
 
 app.use(routes.home, globalRouter);
 app.use(routes.users, userRouter); // 누군가 /user 경로로 들어오면 (그 하위 경로를 위해) 이 router 전체를 사용하겠다는 의미
