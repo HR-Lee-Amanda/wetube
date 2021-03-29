@@ -25,7 +25,7 @@ app.use(cookieParser());
 app.use(express.urlencoded({extended:true})); // 서버가 form에서 받은 데이터를 이해할 수 있도록 
 app.use(express.json()); // 서버가 json 형식의 데이터를 이해할 수 있도록
 app.use(morgan("dev"));
-//app.use(helmet());
+app.use(helmet());
 
 app.use(localsMiddleware);
 
