@@ -1,11 +1,15 @@
-export const home = (req, res) => res.render("home", {pageTitle : "Home"});
+import {videos} from "../db";
+
+export const home = (req, res) => {
+    res.render("home", { pageTitle: "Home", videos });
+};
 
 export const search = (req, res) => {
     const {query:{term : searchingBy}} = req;
     /* 위의 문장 == const searchingBy = req.query.term */
     console.log(searchingBy);
     res.render("search", {pageTitle : "Search", searchingBy : searchingBy});
-}
+};
 
 //export const videos = (req, res) => res.render("videos");
 
